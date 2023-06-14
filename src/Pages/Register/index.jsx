@@ -12,8 +12,64 @@ const Register = () => {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 
+	function validatePassword(senha) {
+		let caractereEspecial = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
+		if (!caractereEspecial.test(senha)) {
+			return false;
+		}
+		let numero = /[0-9]+/;
+		if (!numero.test(senha)) {
+			return false;
+		}
+		let letraMaiuscula = /[A-Z]+/;
+		if (!letraMaiuscula.test(senha)) {
+			return false;
+		}
+		return true;
+	}
+	function validateEmail(email) {
+		var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		if (regex.test(email)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function formatFrase(frase) {
+		const palavras = frase.split(" ");
+
+		const fraseFormatada = palavras.map((palavra) => {
+			const primeiraLetra = palavra.charAt(0).toUpperCase();
+			const outrasLetras = palavra.slice(1).toLowerCase();
+			return primeiraLetra + outrasLetras;
+		});
+
+		return fraseFormatada.join(" ");
+	}
+	function verificarMaiorIdade(data) {
+		const dataAtual = new Date();
+		const dataNascimento = new Date(data);
+		const idadeEmMilissegundos = dataAtual - dataNascimento;
+		const idadeEmAnos = idadeEmMilissegundos / (1000 * 60 * 60 * 24 * 365.25);
+
+		if (idadeEmAnos < 18) {
+			return false;
+		}
+		return true;
+	}
+
 	function handleRegister(e) {
 		e.preventDefault();
+		console.log(formatFrase(firstName));
+		console.log(formatFrase(lastName));
+		console.log(formatFrase(country));
+		console.log(formatFrase(city));
+
+		console.log(verificarMaiorIdade(birthDate));
+		console.log(validatePassword(password));
+		console.log(validateEmail(email));
 	}
 	return (
 		<section>

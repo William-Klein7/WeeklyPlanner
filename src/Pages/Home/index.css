@@ -67,6 +67,8 @@ section {
   border-radius: 50px;
   padding: 20px 0 20px 20px;
   margin-right: 18px;
+  background-color: transparent;
+  color: #E0E0E0;
 }
 
 .form div {
