@@ -10,7 +10,7 @@ const Home = () => {
 				<div className="box">
 					<div className="box-title">
 						<h1>Welcome,</h1>
-						<p>To continue browsing safely, log in to the network.</p>
+						<h2>To continue browsing safely, log in to the network.</h2>
 					</div>
 					<form className="form" onSubmit={handleLogIn()}>
 						<label>Login</label>
