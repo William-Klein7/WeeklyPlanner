@@ -2,11 +2,11 @@ import "./index.css";
 import backgroundImage from "../../assets/Background-image.png";
 import { useState } from "react";
 import { toastError, toastSucess, toastWarn } from "../../Hook/useToast";
-import { ToastContainer } from "react-toastify";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../../FirebaseConection";
 import { auth } from "../../FirebaseConection";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 	const [firstName, setFirstName] = useState("");
@@ -17,6 +17,7 @@ const Register = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const navigate = useNavigate();
 
 	function validatePassword(senha) {
 		let caractereEspecial = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
@@ -124,11 +125,13 @@ const Register = () => {
 			city: formatFrase(city),
 			email: email,
 		});
+		// setTimeout(() => {
+		// 	navigate("/");
+		// }, 2000);
 	}
 
 	return (
 		<section>
-			<ToastContainer />
 			<div className="container">
 				<div className="box">
 					<div className="box-title">
