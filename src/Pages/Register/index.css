@@ -117,3 +117,7 @@ section {
   line-height: 15px;
   color: #E0E0E0;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}

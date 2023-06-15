@@ -1,6 +1,8 @@
 import "./index.css";
 import backgroundImage from "../../assets/Background-image.png";
 import { useState } from "react";
+import { toastError, toastSucess, toastWarn } from "../../Hook/useToast";
+import { ToastContainer } from "react-toastify";
 
 const Register = () => {
 	const [firstName, setFirstName] = useState("");
@@ -66,6 +68,30 @@ const Register = () => {
 		console.log(formatFrase(lastName));
 		console.log(formatFrase(country));
 		console.log(formatFrase(city));
+		if (
+			firstName === "" ||
+			lastName === "" ||
+			birthDate === "" ||
+			country === "" ||
+			city === "" ||
+			email === "" ||
+			password === "" ||
+			confirmPassword === ""
+		) {
+			toastWarn("Por favor, preencha todos os campos!");
+		} else if (!verificarMaiorIdade(birthDate)) {
+			toastError("Desculpe, mas você precisa ter pelo menos 18 anos.");
+		} else if (!validateEmail(email)) {
+			toastWarn("Insira um endereço de E-mail válido.");
+		} else if (!validatePassword(password)) {
+			toastWarn(
+				"A senha deve conter no minimo, um caractere especial, uma letra maiúscula e um número."
+			);
+		} else if (password !== confirmPassword) {
+			toastWarn("As senhas devem ser iguais!");
+		} else {
+			toastSucess("Sucesso!");
+		}
 
 		console.log(verificarMaiorIdade(birthDate));
 		console.log(validatePassword(password));
@@ -73,6 +99,7 @@ const Register = () => {
 	}
 	return (
 		<section>
+			<ToastContainer />
 			<div className="container">
 				<div className="box">
 					<div className="box-title">
