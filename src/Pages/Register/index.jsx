@@ -3,6 +3,10 @@ import backgroundImage from "../../assets/Background-image.png";
 import { useState } from "react";
 import { toastError, toastSucess, toastWarn } from "../../Hook/useToast";
 import { ToastContainer } from "react-toastify";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
+import { db } from "../../FirebaseConection";
+import { auth } from "../../FirebaseConection";
 
 const Register = () => {
 	const [firstName, setFirstName] = useState("");
@@ -64,10 +68,7 @@ const Register = () => {
 
 	function handleRegister(e) {
 		e.preventDefault();
-		console.log(formatFrase(firstName));
-		console.log(formatFrase(lastName));
-		console.log(formatFrase(country));
-		console.log(formatFrase(city));
+
 		if (
 			firstName === "" ||
 			lastName === "" ||
@@ -90,13 +91,41 @@ const Register = () => {
 		} else if (password !== confirmPassword) {
 			toastWarn("As senhas devem ser iguais!");
 		} else {
-			toastSucess("Sucesso!");
+			cadastrarUser();
 		}
-
-		console.log(verificarMaiorIdade(birthDate));
-		console.log(validatePassword(password));
-		console.log(validateEmail(email));
 	}
+
+	async function cadastrarUser() {
+		await createUserWithEmailAndPassword(auth, email, password)
+			.then((value) => {
+				toastSucess("Usuario cadastrado com sucesso");
+				setInfoDB(value.user.uid);
+				setFirstName("");
+				setLastName("");
+				setBirthDate("");
+				setCountry("");
+				setCity("");
+				setEmail("");
+				setPassword("");
+				setConfirmPassword("");
+			})
+			.catch((error) => {
+				console.log(error);
+				toastError("Endereço de E-mail ja cadastrado");
+			});
+	}
+
+	async function setInfoDB(id) {
+		await setDoc(doc(db, "users", id), {
+			firsName: formatFrase(firstName),
+			lastName: formatFrase(lastName),
+			birthDate: birthDate,
+			country: formatFrase(country),
+			city: formatFrase(city),
+			email: email,
+		});
+	}
+
 	return (
 		<section>
 			<ToastContainer />

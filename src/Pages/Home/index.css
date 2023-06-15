@@ -7,44 +7,45 @@ section {
   background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%) no-repeat;
 }
 
-.container {
+.container-login {
   width: 960px;
   height: 1080px;
   display: block;
-  padding: 94px 191px 85px 298px;
+  padding: 197px 191px 296px 298px;
 }
 
-.box {
+.box-login {
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
+  gap: 135px;
 }
 
-.box-title {
+.box-title-login {
   width: 100%;
   max-width: 301px;
   height: auto;
   display: flex;
-  gap: 18px;
+  gap: 35px;
   flex-direction: column;
 }
 
-.box-title h1 {
+.box-title-login h1 {
   font-weight: 400;
   font-size: 60px;
   line-height: 75px;
   color: #E0E0E0;
 }
 
-.box-title h2 {
+.box-title-login h2 {
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   color: #E0E0E0;
 }
 
-.form {
+.form-login {
   width: 100%;
   height: auto;
   display: flex;
@@ -52,14 +53,14 @@ section {
   gap: 32px;
 }
 
-.form label {
+.form-login h2 {
   font-weight: 400;
   font-size: 30px;
   line-height: 38px;
   color: #E0E0E0;
 }
 
-.form input {
+.form-login input {
   width: 379px;
   height: 60px;
   background: #26292C;
@@ -71,15 +72,14 @@ section {
   color: #E0E0E0;
 }
 
-.form div {
+.form-login div {
   width: 100%;
   height: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-.form button {
+.form-login button {
   width: 379px;
   height: 67px;
   background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);

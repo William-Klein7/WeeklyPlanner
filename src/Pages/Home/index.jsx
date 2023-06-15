@@ -6,19 +6,19 @@ const Home = () => {
 
 	return (
 		<section>
-			<div className="container">
-				<div className="box">
-					<div className="box-title">
+			<div className="container-login">
+				<div className="box-login">
+					<div className="box-title-login">
 						<h1>Welcome,</h1>
 						<h2>To continue browsing safely, log in to the network.</h2>
 					</div>
-					<form className="form" onSubmit={handleLogIn()}>
-						<label>Login</label>
-						<div className="box-input">
+					<form className="form-login" onSubmit={handleLogIn()}>
+						<h2>Login</h2>
+						<div className="box-input-login">
 							<input type="email" placeholder="Email" />
 							<AiOutlineUser color="#E0E0E0" fontSize={"20px"} />
 						</div>
-						<div className="box-input">
+						<div className="box-input-login">
 							<input type="password" placeholder="Password" />
 							<AiOutlineLock color="#E0E0E0" fontSize={"20px"} />
 						</div>
