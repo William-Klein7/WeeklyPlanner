@@ -1,0 +1,125 @@
+header {
+  width: 1920px;
+  height: 130px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
+}
+
+.header-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.header-box-title {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0px 12px 24px;
+  gap: 8px;
+  width: 588px;
+  height: 64px;
+  background: #000000;
+  border-radius: 0px 14px 15px 0px;
+  margin: 32px 189px 34px 0;
+}
+
+.header-box-title h1 {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 20px;
+  color: #FFFFFF;
+}
+
+.header-box-title h2 {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFFFFF;
+}
+
+.header-box-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 201px;
+  height: 61px;
+  gap: 15px;
+  margin: 31px 216px 38px 0;
+}
+
+.header-box-date h1 {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 20px;
+  color: #3B3E45;
+}
+
+.header-box-date h2 {
+  width: 201px;
+  height: 20px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #3B3E45;
+}
+
+.header-box-temp {
+  width: 137px;
+  height: 77px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 26px 390px 27px 0;
+}
+
+.header-box-temp svg {
+  margin-right: 12px;
+}
+
+.header-box-temp h1 {
+  width: 137px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #222222;
+
+}
+
+.header-box-temp h2 {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 60px;
+  color: #222222;
+}
+
+.header-box-logout {
+  width: 176px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 20px 23px 29px 0;
+}
+
+.header-box-logout img {
+  margin-bottom: 21px;
+}
+
+.header-box-logout button {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  background-color: transparent;
+  border: none;
+}
+
+.header-box-logout button img {
+  margin: 0;
+}
