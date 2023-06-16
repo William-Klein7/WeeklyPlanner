@@ -1,7 +1,7 @@
 import "./index.css";
 import backgroundImage from "../../assets/Background-image.png";
 import { useState } from "react";
-import { toastError, toastSucess, toastWarn } from "../../Hook/useToast";
+import { toastError, toastSucess, toastWarn } from "../../Hook/toast";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../../FirebaseConection";
@@ -20,22 +20,14 @@ const Register = () => {
 	const navigate = useNavigate();
 
 	function validatePassword(senha) {
-		let caractereEspecial = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
-		if (!caractereEspecial.test(senha)) {
-			return false;
-		}
-		let numero = /[0-9]+/;
-		if (!numero.test(senha)) {
-			return false;
-		}
-		let letraMaiuscula = /[A-Z]+/;
-		if (!letraMaiuscula.test(senha)) {
+		let regexSenha = /^(?=.[\W_])(?=.[A-Z])(?=.*\d).{6,}$/;
+		if (!regexSenha.test(senha)) {
 			return false;
 		}
 		return true;
 	}
 	function validateEmail(email) {
-		var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 		if (regex.test(email)) {
 			return true;
@@ -124,10 +116,15 @@ const Register = () => {
 			country: formatFrase(country),
 			city: formatFrase(city),
 			email: email,
-		});
-		// setTimeout(() => {
-		// 	navigate("/");
-		// }, 2000);
+		})
+			.then(() => {
+				setTimeout(() => {
+					navigate("/");
+				}, 3000);
+			})
+			.catch(() => {
+				toastError("Ocorreu algum erro ao cadastrar o usuario");
+			});
 	}
 
 	return (
@@ -140,7 +137,7 @@ const Register = () => {
 					</div>
 					<form className="form" onSubmit={handleRegister}>
 						<div className="box-input">
-							<label>First Name</label>
+							<label htmlFor="firstNameId">First Name</label>
 							<input
 								value={firstName}
 								onChange={(e) => {
@@ -148,10 +145,11 @@ const Register = () => {
 								}}
 								type="text"
 								placeholder="Your first name"
+								id="firstNameId"
 							/>
 						</div>
 						<div className="box-input">
-							<label>Last name</label>
+							<label htmlFor="LastNameId">Last name</label>
 							<input
 								value={lastName}
 								onChange={(e) => {
@@ -159,20 +157,22 @@ const Register = () => {
 								}}
 								type="text"
 								placeholder="Your last name"
+								id="LastNameId"
 							/>
 						</div>
 						<div className="box-input">
-							<label>Birth date</label>
+							<label htmlFor="BirthDateId">Birth date</label>
 							<input
 								value={birthDate}
 								onChange={(e) => {
 									setBirthDate(e.target.value);
 								}}
 								type="date"
+								id="BirthDateId"
 							/>
 						</div>
 						<div className="box-input">
-							<label>Country</label>
+							<label htmlFor="countryId">Country</label>
 							<input
 								value={country}
 								onChange={(e) => {
@@ -180,10 +180,11 @@ const Register = () => {
 								}}
 								type="text"
 								placeholder="Your Country"
+								id="countryId"
 							/>
 						</div>
 						<div className="box-input">
-							<label>City</label>
+							<label htmlFor="cityId">City</label>
 							<input
 								value={city}
 								onChange={(e) => {
@@ -191,10 +192,11 @@ const Register = () => {
 								}}
 								type="text"
 								placeholder="Your City"
+								id="cityId"
 							/>
 						</div>
 						<div className="box-input">
-							<label>E-mail</label>
+							<label htmlFor="emailId">E-mail</label>
 							<input
 								value={email}
 								onChange={(e) => {
@@ -202,10 +204,11 @@ const Register = () => {
 								}}
 								type="email"
 								placeholder="A valid e-mail here"
+								id="emailId"
 							/>
 						</div>
 						<div className="box-input">
-							<label>Password</label>
+							<label htmlFor="passwordId">Password</label>
 							<input
 								value={password}
 								onChange={(e) => {
@@ -213,10 +216,11 @@ const Register = () => {
 								}}
 								type="new-password"
 								placeholder="Your password"
+								id="passwordId"
 							/>
 						</div>
 						<div className="box-input">
-							<label>Password</label>
+							<label htmlFor="confirmPasswordId">Password</label>
 							<input
 								value={confirmPassword}
 								onChange={(e) => {
@@ -224,6 +228,7 @@ const Register = () => {
 								}}
 								type="new-password"
 								placeholder="Confirm your password"
+								id="confirmPasswordId"
 							/>
 						</div>
 						<button type="submit">Register Now</button>

@@ -1,15 +1,17 @@
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "../../assets/Background-image.png";
-import { AiOutlineUser, AiOutlineLock } from "react-icons/Ai";
+import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../FirebaseConection";
 import { useState } from "react";
-import { toastError } from "../../Hook/useToast";
+import { toastError } from "../../Hook/toast";
+import Modal from "../../components/Modal";
 
 const Home = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [modal, setModal] = useState(false);
 	const navigate = useNavigate();
 
 	async function handleLogIn(e) {
@@ -20,10 +22,15 @@ const Home = () => {
 			})
 			.catch(() => {
 				toastError("Erro ao logar o Usuario");
+				setTimeout(() => {
+					setModal(true);
+				}, 3000);
 			});
 	}
+
 	return (
 		<section>
+			<Modal isOpen={modal} setCloseModal={() => setModal(!modal)} />
 			<div className="container-login">
 				<div className="box-login">
 					<div className="box-title-login">
@@ -39,6 +46,7 @@ const Home = () => {
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								id="userId"
+								className="form-input"
 							/>
 							<label className="labelFloat" htmlFor="userId">
 								<AiOutlineUser color="#E0E0E0" fontSize={"20px"} />
@@ -51,6 +59,7 @@ const Home = () => {
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 								id="passwordId"
+								className="form-input"
 							/>
 							<label className="labelFloat" htmlFor="passwordId">
 								<AiOutlineLock color="#E0E0E0" fontSize={"20px"} />
