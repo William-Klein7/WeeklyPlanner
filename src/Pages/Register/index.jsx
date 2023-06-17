@@ -128,7 +128,7 @@ const Register = () => {
 	}
 
 	return (
-		<section>
+		<section className="login">
 			<div className="container">
 				<div className="box">
 					<div className="box-title">

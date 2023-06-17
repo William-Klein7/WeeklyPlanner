@@ -17,5 +17,6 @@ body {
 }
 
 button {
+  font-family: 'Mulish', sans-serif;
   cursor: pointer;
 }

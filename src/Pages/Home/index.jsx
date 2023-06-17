@@ -29,7 +29,7 @@ const Home = () => {
 	}
 
 	return (
-		<section>
+		<section className="login">
 			<Modal isOpen={modal} setCloseModal={() => setModal(!modal)} />
 			<div className="container-login">
 				<div className="box-login">
