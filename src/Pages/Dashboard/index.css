@@ -1,7 +1,7 @@
 .tasks {
   width: 100%;
   height: 950px;
-  background: #E5E5E5;
+  background: rgba(255, 255, 255, 0.95);
   background-image: url("../../assets/logo-compass-g.png");
   background-repeat: no-repeat;
   background-position: right bottom;

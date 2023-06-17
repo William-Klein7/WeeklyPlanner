@@ -1,17 +1,52 @@
+import { useState } from "react";
+import { setDoc, doc } from "firebase/firestore";
+import { db } from "../../FirebaseConection";
+import { toastWarn } from "../../Hook/toast";
 import "./index.css";
 const CreateTasks = () => {
+	const [selectDay, setSelectDay] = useState("");
+	const [selectHours, setSelectHours] = useState("");
+	const [task, setTask] = useState("");
+
+	async function handleTask(e) {
+		e.preventDefault();
+		if (selectDay === "" || selectHours === "" || task === "") {
+			toastWarn("Preencha todos os campos antes de adicionar uma task");
+		} else {
+			const user = JSON.parse(localStorage.getItem("userLogado"));
+			console.log(user);
+			await setDoc(doc(db, "tarefas", user.uid), {
+				taskDescription: task,
+				day: selectDay,
+				hour: selectHours,
+			});
+		}
+		console.log(selectDay);
+		console.log(selectHours);
+		console.log(task);
+	}
+
 	return (
 		<section className="create-task">
-			<form>
+			<form onSubmit={handleTask}>
 				<div>
 					<input
 						type="text"
 						name="text"
 						id="descriptionId"
 						placeholder="Task or issue"
+						value={task}
+						onChange={(e) => setTask(e.target.value)}
 					/>
-					<select name="day" id="dayId">
-						<option value="Monday">Monday</option>
+					<select
+						name="day"
+						id="dayId"
+						value={selectDay}
+						onChange={(e) => setSelectDay(e.target.value)}
+					>
+						<option value="Monday" selected>
+							Monday
+						</option>
 						<option value="Tuesday">Tuesday</option>
 						<option value="Wednesday">Wednesday</option>
 						<option value="Thursday">Thursday</option>
@@ -19,8 +54,15 @@ const CreateTasks = () => {
 						<option value="Saturday">Saturday</option>
 						<option value="Sunday">Sunday</option>
 					</select>
-					<select name="hours" id="hoursId">
-						<option value="0h 00min">0h 00min</option>
+					<select
+						name="hours"
+						id="hoursId"
+						value={selectHours}
+						onChange={(e) => setSelectHours(e.target.value)}
+					>
+						<option value="0h 00min" selected>
+							0h 00min
+						</option>
 						<option value="0h 30min">0h 30min</option>
 						<option value="1h 00min">1h 00min</option>
 						<option value="1h 30min">1h 30min</option>
