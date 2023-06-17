@@ -1,21 +1,25 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import { auth } from "../FirebaseConection";
+import { auth, db } from "../FirebaseConection";
 import { onAuthStateChanged } from "firebase/auth";
 import { Navigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
 function Private({ children }) {
 	const [loading, setLoading] = useState(true);
 	const [signed, setSigned] = useState(false);
 
 	useEffect(() => {
 		async function checkLogin() {
-			const ver = onAuthStateChanged(auth, (user) => {
+			const ver = onAuthStateChanged(auth, async (user) => {
 				if (user) {
+					let userInfo = await getDoc(doc(db, "users", user.uid));
+					let data = userInfo.data();
 					const userData = {
 						uid: user.uid,
-						email: user.email,
+						data,
 					};
+					console.log(userData);
 					localStorage.setItem("userLogado", JSON.stringify(userData));
 					setLoading(false);
 					setSigned(true);

@@ -20,7 +20,7 @@ const Register = () => {
 	const navigate = useNavigate();
 
 	function validatePassword(senha) {
-		let regexSenha = /^(?=.[\W_])(?=.[A-Z])(?=.*\d).{6,}$/;
+		let regexSenha = /^(?=.*[\W_])(?=.*[A-Z])(?=.*\d).{6,}$/;
 		if (!regexSenha.test(senha)) {
 			return false;
 		}
