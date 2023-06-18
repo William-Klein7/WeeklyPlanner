@@ -44,9 +44,7 @@ const CreateTasks = () => {
 						value={selectDay}
 						onChange={(e) => setSelectDay(e.target.value)}
 					>
-						<option value="Monday" selected>
-							Monday
-						</option>
+						<option value="Monday">Monday</option>
 						<option value="Tuesday">Tuesday</option>
 						<option value="Wednesday">Wednesday</option>
 						<option value="Thursday">Thursday</option>
@@ -60,9 +58,7 @@ const CreateTasks = () => {
 						value={selectHours}
 						onChange={(e) => setSelectHours(e.target.value)}
 					>
-						<option value="0h 00min" selected>
-							0h 00min
-						</option>
+						<option value="0h 00min">0h 00min</option>
 						<option value="0h 30min">0h 30min</option>
 						<option value="1h 00min">1h 00min</option>
 						<option value="1h 30min">1h 30min</option>
