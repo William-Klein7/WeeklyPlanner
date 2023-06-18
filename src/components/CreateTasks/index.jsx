@@ -1,7 +1,11 @@
 import { useState } from "react";
-import { setDoc, doc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../FirebaseConection";
-import { toastWarn } from "../../Hook/toast";
+import {
+	toastSucessLight,
+	toastWarnLight,
+	toastErrorLight,
+} from "../../Hook/toasLight";
 import "./index.css";
 const CreateTasks = () => {
 	const [selectDay, setSelectDay] = useState("");
@@ -11,15 +15,23 @@ const CreateTasks = () => {
 	async function handleTask(e) {
 		e.preventDefault();
 		if (selectDay === "" || selectHours === "" || task === "") {
-			toastWarn("Preencha todos os campos antes de adicionar uma task");
+			toastWarnLight("Preencha todos os campos antes de adicionar uma task");
 		} else {
 			const user = JSON.parse(localStorage.getItem("userLogado"));
 			console.log(user);
-			await setDoc(doc(db, "tarefas", user.uid), {
+			await addDoc(collection(db, "tarefas"), {
 				taskDescription: task,
 				day: selectDay,
 				hour: selectHours,
-			});
+				uid: user.uid,
+			})
+				.then(() => {
+					toastSucessLight("Tarefa cadastrada com sucesso");
+					setTask("");
+				})
+				.catch(() => {
+					toastErrorLight("Erro ao cadastrar a tarefa");
+				});
 		}
 		console.log(selectDay);
 		console.log(selectHours);
@@ -114,15 +126,6 @@ const CreateTasks = () => {
 					<button id="deleteId">- Delete All</button>
 				</div>
 			</form>
-			{/* <div className="container-btns">
-				<button>Monday</button>
-				<button>Tuesday</button>
-				<button>Wednesday</button>
-				<button>Thursday</button>
-				<button>Friday</button>
-				<button>Saturday</button>
-				<button>Sunday</button>
-			</div> */}
 		</section>
 	);
 };

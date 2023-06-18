@@ -72,7 +72,7 @@ const Header = () => {
 							src={`http://openweathermap.org/img/wn/${responceAPI.weather[0].icon}.png`}
 							alt="Icon"
 						/>
-						<h2>{responceAPI.main.temp}</h2>
+						<h2>{parseInt(responceAPI.main.temp)}°</h2>
 					</div>
 				) : (
 					<div className="header-box-temp">
