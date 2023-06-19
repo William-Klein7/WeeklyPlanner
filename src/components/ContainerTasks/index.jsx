@@ -34,13 +34,15 @@ const ContainerTask = () => {
 		});
 	};
 
-	const sortedItems = sortItemsByHour(tarefas);
+	var sortedItems = sortItemsByHour(tarefas);
+	sortedItems = sortedItems.filter((item) => item.day === selectedButton);
 
 	console.log(sortedItems);
+
 	const occurrences = {};
 	const repeatedItems = [];
 
-	tarefas.forEach((item) => {
+	sortedItems.forEach((item) => {
 		if (occurrences[item.hour]) {
 			repeatedItems.push(item);
 		} else {
@@ -88,7 +90,14 @@ const ContainerTask = () => {
 
 		loadTarefas();
 	}, []);
+
 	localStorage.setItem("listaTask", JSON.stringify(tarefas));
+
+	const itemsRepetidos = sortedItems.filter(
+		(task, index) =>
+			sortedItems.findIndex((t) => t.hour === task.hour) !== index
+	);
+
 	return (
 		<div>
 			<div className="container-btns">
@@ -170,26 +179,38 @@ const ContainerTask = () => {
 			</div>
 			<div className="container-task">
 				<div className="box-cards">
-					{sortedItems.map(
-						(items) =>
-							selectedButton === items.day && (
-								<div className="card-line" key={items.id}>
-									<div className="container-time-task">
-										<div style={{ background: bgColor }}>
-											<h2>{items.hour}</h2>
-										</div>
-									</div>
-									{sortedItems.some((task) => {
-										task.hour === items.hour;
-									})}
-									<div className="card">
-										<div style={{ background: bgColor }}></div>
-										<p>{items.taskDescription}</p>
-										<button onClick={() => deleteTask(items.id)}>Delete</button>
+					{sortedItems.map((items) => {
+						const repetido = itemsRepetidos.some(
+							(task) => task.hour === items.hour
+						);
+
+						return (
+							<div className="card-line" key={items.id}>
+								<div className="container-time-task">
+									<div
+										style={
+											repetido
+												? { background: "rgba(0, 0, 0, 0.7)" }
+												: { background: bgColor }
+										}
+									>
+										<h2>{items.hour}</h2>
 									</div>
 								</div>
-							)
-					)}
+								<div className="card">
+									<div
+										style={
+											repetido
+												? { background: "rgba(0, 0, 0, 0.7)" }
+												: { background: bgColor }
+										}
+									></div>
+									<p>{items.taskDescription}</p>
+									<button onClick={() => deleteTask(items.id)}>Delete</button>
+								</div>
+							</div>
+						);
+					})}
 				</div>
 			</div>
 		</div>
