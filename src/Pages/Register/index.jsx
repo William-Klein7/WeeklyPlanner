@@ -102,8 +102,7 @@ const Register = () => {
 				setPassword("");
 				setConfirmPassword("");
 			})
-			.catch((error) => {
-				console.log(error);
+			.catch(() => {
 				toastError("Endereço de E-mail ja cadastrado");
 			});
 	}

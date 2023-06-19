@@ -194,7 +194,9 @@ const ContainerTask = () => {
 												: { background: bgColor }
 										}
 									>
-										<h2>{items.hour}</h2>
+										<h2 className={repetido ? "color-white" : ""}>
+											{items.hour}
+										</h2>
 									</div>
 								</div>
 								<div className="card">

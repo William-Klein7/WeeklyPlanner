@@ -20,7 +20,6 @@ const CreateTasks = () => {
 			toastWarnLight("Preencha todos os campos antes de adicionar uma task");
 		} else {
 			const user = JSON.parse(localStorage.getItem("userLogado"));
-			console.log(user);
 			const taskRef = collection(db, "tarefas");
 			await addDoc(taskRef, {
 				taskDescription: task,
@@ -60,6 +59,9 @@ const CreateTasks = () => {
 						value={selectDay}
 						onChange={(e) => setSelectDay(e.target.value)}
 					>
+						<option value="" selected>
+							Select a day
+						</option>
 						<option value="Monday">Monday</option>
 						<option value="Tuesday">Tuesday</option>
 						<option value="Wednesday">Wednesday</option>
@@ -75,6 +77,9 @@ const CreateTasks = () => {
 						value={selectHours}
 						onChange={(e) => setSelectHours(e.target.value)}
 					>
+						<option value="" selected>
+							Select hour
+						</option>
 						<option value="0h 00min">0h 00min</option>
 						<option value="0h 30min">0h 30min</option>
 						<option value="1h 00min">1h 00min</option>

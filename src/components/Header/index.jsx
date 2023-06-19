@@ -17,7 +17,6 @@ const Header = () => {
 		const month = date.toLocaleDateString("en", { month: "long" });
 		let day = date.getDate();
 		const year = date.getFullYear();
-		console.log(day);
 		if (day == 1 || day == 21 || day == 31) {
 			day = day + "th";
 		} else if (day == 2) {
@@ -37,7 +36,6 @@ const Header = () => {
 			if (typeof responceAPI !== "object") {
 				await axios.get(url).then((responce) => {
 					setResponce(responce.data);
-					console.log(responceAPI);
 				});
 			}
 		}

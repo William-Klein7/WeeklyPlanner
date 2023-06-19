@@ -300,3 +300,7 @@
   color: #FFFFFF;
   border: none;
 }
+
+.color-white {
+  color: #FFFFFF !important;
+}

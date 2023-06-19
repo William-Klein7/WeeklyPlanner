@@ -28,12 +28,10 @@ const Home = () => {
 				})
 				.catch((error) => {
 					if (error.code === "auth/wrong-password") {
-						console.log(error.code);
 						setPasswordError(
 							"Wow, invalid username or password. Please, try again!"
 						);
 					} else if (error.code === "auth/user-not-found") {
-						console.log(error.code);
 						setPasswordError("");
 						toastError("Usuario não encontrado");
 						setTimeout(() => {

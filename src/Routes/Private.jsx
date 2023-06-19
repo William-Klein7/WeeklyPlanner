@@ -19,7 +19,6 @@ function Private({ children }) {
 						uid: user.uid,
 						data,
 					};
-					console.log(userData);
 					localStorage.setItem("userLogado", JSON.stringify(userData));
 					setLoading(false);
 					setSigned(true);
