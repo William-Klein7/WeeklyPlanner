@@ -5,27 +5,43 @@ import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../FirebaseConection";
 import { useState } from "react";
-import { toastError } from "../../Hook/toast";
+import { toastError, toastWarn } from "../../Hook/toast";
 import Modal from "../../components/Modal";
 
 const Home = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [modal, setModal] = useState(false);
+	const [passwordError, setPasswordError] = useState("");
 	const navigate = useNavigate();
 
 	async function handleLogIn(e) {
 		e.preventDefault();
-		await signInWithEmailAndPassword(auth, email, password)
-			.then(() => {
-				navigate("/dashboard");
-			})
-			.catch(() => {
-				toastError("Erro ao logar o Usuario");
-				setTimeout(() => {
-					setModal(true);
-				}, 3000);
-			});
+		if (email === "" || password == "") {
+			setPasswordError("");
+			toastWarn("Preencha todos os campos");
+		} else {
+			await signInWithEmailAndPassword(auth, email, password)
+				.then(() => {
+					navigate("/dashboard");
+					setPasswordError("");
+				})
+				.catch((error) => {
+					if (error.code === "auth/wrong-password") {
+						console.log(error.code);
+						setPasswordError(
+							"Wow, invalid username or password. Please, try again!"
+						);
+					} else if (error.code === "auth/user-not-found") {
+						console.log(error.code);
+						setPasswordError("");
+						toastError("Usuario não encontrado");
+						setTimeout(() => {
+							setModal(true);
+						}, 3000);
+					}
+				});
+		}
 	}
 
 	return (
@@ -46,7 +62,11 @@ const Home = () => {
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								id="userId"
-								className="form-input"
+								className={
+									passwordError != ""
+										? "form-input form-inptut-error"
+										: "form-input"
+								}
 							/>
 							<label className="labelFloat" htmlFor="userId">
 								<AiOutlineUser color="#E0E0E0" fontSize={"20px"} />
@@ -59,12 +79,17 @@ const Home = () => {
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 								id="passwordId"
-								className="form-input"
+								className={
+									passwordError != ""
+										? "form-input form-inptut-error"
+										: "form-input"
+								}
 							/>
 							<label className="labelFloat" htmlFor="passwordId">
 								<AiOutlineLock color="#E0E0E0" fontSize={"20px"} />
 							</label>
 						</div>
+						{passwordError != "" && <p>{passwordError}</p>}
 						<button type="submit">Log In</button>
 					</form>
 				</div>

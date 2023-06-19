@@ -82,6 +82,18 @@
   position: relative;
 }
 
+.form-login p {
+  max-width: 283px;
+  position: absolute;
+  top: 728px;
+  left: 333px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #E9B425;
+}
+
 .labelFloat {
   position: absolute;
   background-color: transparent;
@@ -105,11 +117,18 @@
   margin-top: 83px;
 }
 
+.form-input:focus {
+  border: 2px solid white;
+}
 
 input[type='email']:focus~label,
 input[type='password']:focus~label,
 .form-input:not(:placeholder-shown).form-input:not(:focus)~label {
   right: 1.5rem;
+}
+
+.form-inptut-error:not(:focus) {
+  border: 1px solid #E9B425;
 }
 
 .img-back {
