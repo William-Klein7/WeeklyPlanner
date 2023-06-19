@@ -19,7 +19,8 @@ const CreateTasks = () => {
 		} else {
 			const user = JSON.parse(localStorage.getItem("userLogado"));
 			console.log(user);
-			await addDoc(collection(db, "tarefas"), {
+			const taskRef = collection(db, "tarefas");
+			await addDoc(taskRef, {
 				taskDescription: task,
 				day: selectDay,
 				hour: selectHours,
@@ -33,9 +34,6 @@ const CreateTasks = () => {
 					toastErrorLight("Erro ao cadastrar a tarefa");
 				});
 		}
-		console.log(selectDay);
-		console.log(selectHours);
-		console.log(task);
 	}
 
 	return (
