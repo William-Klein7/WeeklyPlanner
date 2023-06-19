@@ -88,7 +88,7 @@ const ContainerTask = () => {
 
 		loadTarefas();
 	}, []);
-
+	localStorage.setItem("listaTask", JSON.stringify(tarefas));
 	return (
 		<div>
 			<div className="container-btns">

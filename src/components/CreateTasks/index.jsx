@@ -7,10 +7,12 @@ import {
 	toastErrorLight,
 } from "../../Hook/toasLight";
 import "./index.css";
+import ModalLight from "../ModalLight";
 const CreateTasks = () => {
 	const [selectDay, setSelectDay] = useState("");
 	const [selectHours, setSelectHours] = useState("");
 	const [task, setTask] = useState("");
+	const [openModal, setOpenModal] = useState(false);
 
 	async function handleTask(e) {
 		e.preventDefault();
@@ -38,6 +40,10 @@ const CreateTasks = () => {
 
 	return (
 		<section className="create-task">
+			<ModalLight
+				isOpen={openModal}
+				setCloseModal={() => setOpenModal(!openModal)}
+			/>
 			<form onSubmit={handleTask}>
 				<div>
 					<input
@@ -62,6 +68,7 @@ const CreateTasks = () => {
 						<option value="Saturday">Saturday</option>
 						<option value="Sunday">Sunday</option>
 					</select>
+
 					<select
 						name="hours"
 						id="hoursId"
@@ -121,9 +128,11 @@ const CreateTasks = () => {
 					<button type="submit" id="addId">
 						+ Add to calendar
 					</button>
-					<button id="deleteId">- Delete All</button>
 				</div>
 			</form>
+			<button id="deleteId" onClick={() => setOpenModal(true)}>
+				- Delete All
+			</button>
 		</section>
 	);
 };
