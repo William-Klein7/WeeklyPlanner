@@ -17,7 +17,7 @@ const CreateTasks = () => {
 	async function handleTask(e) {
 		e.preventDefault();
 		if (selectDay === "" || selectHours === "" || task === "") {
-			toastWarnLight("Preencha todos os campos antes de adicionar uma task");
+			toastWarnLight("Fill in all fields before adding a task");
 		} else {
 			const user = JSON.parse(localStorage.getItem("userLogado"));
 			const taskRef = collection(db, "tarefas");
@@ -28,11 +28,11 @@ const CreateTasks = () => {
 				uid: user.uid,
 			})
 				.then(() => {
-					toastSucessLight("Tarefa cadastrada com sucesso");
+					toastSucessLight("Task registered successfully");
 					setTask("");
 				})
 				.catch(() => {
-					toastErrorLight("Erro ao cadastrar a tarefa");
+					toastErrorLight("Error registering task");
 				});
 		}
 	}

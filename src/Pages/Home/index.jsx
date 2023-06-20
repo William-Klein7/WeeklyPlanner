@@ -18,8 +18,12 @@ const Home = () => {
 	async function handleLogIn(e) {
 		e.preventDefault();
 		if (email === "" || password == "") {
+			setEmail("");
 			setPasswordError("");
-			toastWarn("Preencha todos os campos");
+			toastWarn("Fill in all fields");
+			setTimeout(() => {
+				setModal(true);
+			}, 3000);
 		} else {
 			await signInWithEmailAndPassword(auth, email, password)
 				.then(() => {
@@ -33,7 +37,7 @@ const Home = () => {
 						);
 					} else if (error.code === "auth/user-not-found") {
 						setPasswordError("");
-						toastError("Usuario não encontrado");
+						toastError("User not found");
 						setTimeout(() => {
 							setModal(true);
 						}, 3000);

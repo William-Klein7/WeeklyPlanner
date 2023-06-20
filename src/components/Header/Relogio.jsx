@@ -16,7 +16,7 @@ const Relogio = () => {
 
 		atualizarHora();
 
-		const intervalo = setInterval(atualizarHora, 10000);
+		const intervalo = setInterval(atualizarHora, 1000);
 		return () => clearInterval(intervalo);
 	}, [minutos, hora]);
 	return <h1>{hora + ":" + minutos}</h1>;

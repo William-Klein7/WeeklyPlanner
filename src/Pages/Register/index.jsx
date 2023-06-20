@@ -72,17 +72,17 @@ const Register = () => {
 			password === "" ||
 			confirmPassword === ""
 		) {
-			toastWarn("Por favor, preencha todos os campos!");
+			toastWarn("Please fill in all fields!");
 		} else if (!verificarMaiorIdade(birthDate)) {
-			toastError("Desculpe, mas você precisa ter pelo menos 18 anos.");
+			toastError("Sorry, but you must be at least 18 years old.");
 		} else if (!validateEmail(email)) {
-			toastWarn("Insira um endereço de E-mail válido.");
+			toastWarn("Enter a valid email address.");
 		} else if (!validatePassword(password)) {
 			toastWarn(
-				"A senha deve conter no minimo, um caractere especial, uma letra maiúscula e um número."
+				"The password must contain at least 6 characters, one special character, one capital letter and one number."
 			);
 		} else if (password !== confirmPassword) {
-			toastWarn("As senhas devem ser iguais!");
+			toastWarn("Passwords must match!");
 		} else {
 			cadastrarUser();
 		}
@@ -91,7 +91,7 @@ const Register = () => {
 	async function cadastrarUser() {
 		await createUserWithEmailAndPassword(auth, email, password)
 			.then((value) => {
-				toastSucess("Usuario cadastrado com sucesso");
+				toastSucess("Successfully registered user");
 				setInfoDB(value.user.uid);
 				setFirstName("");
 				setLastName("");
@@ -103,7 +103,7 @@ const Register = () => {
 				setConfirmPassword("");
 			})
 			.catch(() => {
-				toastError("Endereço de E-mail ja cadastrado");
+				toastError("Email address already registered");
 			});
 	}
 
@@ -122,7 +122,7 @@ const Register = () => {
 				}, 3000);
 			})
 			.catch(() => {
-				toastError("Ocorreu algum erro ao cadastrar o usuario");
+				toastError("An error occurred while registering the user");
 			});
 	}
 

@@ -37,8 +37,6 @@ const ContainerTask = () => {
 	var sortedItems = sortItemsByHour(tarefas);
 	sortedItems = sortedItems.filter((item) => item.day === selectedButton);
 
-	console.log(sortedItems);
-
 	const occurrences = {};
 	const repeatedItems = [];
 
@@ -54,10 +52,10 @@ const ContainerTask = () => {
 		const docRef = doc(db, "tarefas", id);
 		await deleteDoc(docRef)
 			.then(() => {
-				toastSucessLight("Task deletada com sucesso");
+				toastSucessLight("Task deleted successfully");
 			})
 			.catch(() => {
-				toastErrorLight("Erro ao deletar a task");
+				toastErrorLight("Error deleting a task");
 			});
 	}
 
@@ -199,6 +197,7 @@ const ContainerTask = () => {
 										</h2>
 									</div>
 								</div>
+
 								<div className="card">
 									<div
 										style={
