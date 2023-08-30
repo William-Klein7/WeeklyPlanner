@@ -3,20 +3,22 @@
 </h1>
 
 <div align="center">
-  <img heigth="180em" src="./src/assets/Login.jpeg"/>
+  <img heigth="200em" src="./src/assets/Login.jpeg"/>
   
-  <a fontSize="4em" href="https://weekly-planner-a8b5-m9ukvkd3e-william-klein7.vercel.app">Para acessar o site, clique aqui</a>
+  <a href="https://weekly-planner-a8b5-m9ukvkd3e-william-klein7.vercel.app">Para acessar o site, clique aqui</a>
   <h6>
     Obs: O Planner foi desenvolvido para a resolução 1920x1080
   </h6>
 </div>
 
 ## 📔 Sobre
-O Weekly Planner é uma ferramenta de planejamento poderosa e intuitiva que ajuda você a organizar sua vida de forma eficiente, garantindo que você esteja no controle de suas tarefas e metas ao longo da semana. Seja para uso pessoal, acadêmico ou profissional, o Weekly Planner oferece uma maneira prática de visualizar, gerenciar e priorizar suas atividades semanais.
+O Weekly Planner é uma ferramenta de planejamento poderosa e intuitiva que ajuda você a organizar sua vida de forma eficiente, garantindo que você esteja no controle de suas tarefas e metas ao longo da semana. Seja para uso pessoal, acadêmico ou profissional, o Weekly Planner oferece uma maneira prática de visualizar suas atividades semanais.
 
 O Weekly Planner fornece uma visão completa da sua semana de uma só vez. Com uma interface de calendário intuitiva, você pode ver todos os dias da semana de forma clara e organizada.
 
 Registre todas as suas tarefas, compromissos e metas para a semana. Atribua datas de vencimento e prioridades para garantir que você esteja focado no que é mais importante.
+
+Organize sua semana de forma eficaz com o Weekly Planner. Nunca foi tão fácil manter o controle das suas tarefas e compromissos. Experimente agora e simplifique sua vida semanal!
 
 ## 🔨 Ferramentas
 - [React](https://legacy.reactjs.org/docs/getting-started.html)
