@@ -6,7 +6,7 @@ import { auth } from "../../FirebaseConection";
 import { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import axios from "axios";
-import Relogio from "./relogio";
+import Relogio from "../Relogio";
 
 const Header = () => {
 	const [responceAPI, setResponce] = useState("");
