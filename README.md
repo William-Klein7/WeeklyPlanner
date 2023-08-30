@@ -4,7 +4,6 @@
 
 <div align="center">
   <img heigth="180em" src="./src/assets/Login.jpeg"/>
-  <img heigth="180em" src="./src/assets/Planner.jpeg"/>
   <a fontSize="4em" href="https://weekly-planner-a8b5-m9ukvkd3e-william-klein7.vercel.app">Para acessar o site, clique aqui</a>
   <h6>
     Obs: O Planner foi desenvolvido para a resolução 1920x1080
