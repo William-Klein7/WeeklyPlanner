@@ -213,7 +213,7 @@ const Register = () => {
 								onChange={(e) => {
 									setPassword(e.target.value);
 								}}
-								type="new-password"
+								type="password"
 								placeholder="Your password"
 								id="passwordId"
 							/>
@@ -225,7 +225,7 @@ const Register = () => {
 								onChange={(e) => {
 									setConfirmPassword(e.target.value);
 								}}
-								type="new-password"
+								type="password"
 								placeholder="Confirm your password"
 								id="confirmPasswordId"
 							/>

@@ -39,12 +39,14 @@ const ContainerTask = () => {
 
 	const occurrences = {};
 	const repeatedItems = [];
+	const items = [];
 
 	sortedItems.forEach((item) => {
 		if (occurrences[item.hour]) {
 			repeatedItems.push(item);
 		} else {
 			occurrences[item.hour] = true;
+			items.push(item);
 		}
 	});
 
@@ -95,6 +97,11 @@ const ContainerTask = () => {
 		(task, index) =>
 			sortedItems.findIndex((t) => t.hour === task.hour) !== index
 	);
+	sortedItems = sortedItems.filter(
+		(task, index) =>
+			sortedItems.findIndex((t) => sortedItems.hour !== task.hour) !== index
+	);
+	console.log(items);
 
 	return (
 		<div>
@@ -177,10 +184,11 @@ const ContainerTask = () => {
 			</div>
 			<div className="container-task">
 				<div className="box-cards">
-					{sortedItems.map((items) => {
+					{items.map((items) => {
 						const repetido = itemsRepetidos.some(
 							(task) => task.hour === items.hour
 						);
+						console.log(repetido);
 
 						return (
 							<div className="card-line" key={items.id}>
@@ -197,18 +205,57 @@ const ContainerTask = () => {
 										</h2>
 									</div>
 								</div>
-
-								<div className="card">
-									<div
-										style={
-											repetido
-												? { background: "rgba(0, 0, 0, 0.7)" }
-												: { background: bgColor }
-										}
-									></div>
-									<p>{items.taskDescription}</p>
-									<button onClick={() => deleteTask(items.id)}>Delete</button>
-								</div>
+								{repetido && repeatedItems.length > 0 ? (
+									<>
+										<div className="card">
+											<div
+												style={
+													repetido
+														? { background: "rgba(0, 0, 0, 0.7)" }
+														: { background: bgColor }
+												}
+											></div>
+											<p>{items.taskDescription}</p>
+											<button onClick={() => deleteTask(items.id)}>
+												Delete
+											</button>
+										</div>
+										{repeatedItems.map(
+											(item) =>
+												items.hour === item.hour && (
+													<div className="card" key={item.id}>
+														<div
+															style={
+																repetido
+																	? { background: "rgba(0, 0, 0, 0.7)" }
+																	: { background: bgColor }
+															}
+														></div>
+														<p>{item.taskDescription}</p>
+														<button onClick={() => deleteTask(item.id)}>
+															Delete
+														</button>
+													</div>
+												)
+										)}
+										<div className="separator">
+											<div className="elipse"></div>
+											<hr />
+										</div>
+									</>
+								) : (
+									<div className="card">
+										<div
+											style={
+												repetido
+													? { background: "rgba(0, 0, 0, 0.7)" }
+													: { background: bgColor }
+											}
+										></div>
+										<p>{items.taskDescription}</p>
+										<button onClick={() => deleteTask(items.id)}>Delete</button>
+									</div>
+								)}
 							</div>
 						);
 					})}
