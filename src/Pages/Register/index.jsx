@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../../FirebaseConection";
 import { auth } from "../../FirebaseConection";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
 	const [firstName, setFirstName] = useState("");
@@ -230,6 +230,9 @@ const Register = () => {
 								id="confirmPasswordId"
 							/>
 						</div>
+						<span>
+							Have acount? <Link to={"/"}>Login!</Link>
+						</span>
 						<button type="submit">Register Now</button>
 					</form>
 				</div>

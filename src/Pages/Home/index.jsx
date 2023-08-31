@@ -1,5 +1,5 @@
 import "./index.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import backgroundImage from "../../assets/Background-image.png";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -91,6 +91,9 @@ const Home = () => {
 								<AiOutlineLock color="#E0E0E0" fontSize={"20px"} />
 							</label>
 						</div>
+						<span>
+							No have acount? <Link to={"/register"}>Signup!</Link>
+						</span>
 						{passwordError != "" && <p>{passwordError}</p>}
 						<button type="submit">Log In</button>
 					</form>

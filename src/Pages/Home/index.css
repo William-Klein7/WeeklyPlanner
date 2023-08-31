@@ -47,6 +47,7 @@
 
 .form-login {
   width: 100%;
+  max-width: max-content;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -54,6 +55,7 @@
 }
 
 .form-login h2 {
+  max-width: max-content;
   font-weight: 400;
   font-size: 30px;
   line-height: 38px;
@@ -101,6 +103,17 @@
   top: 1.2rem;
   transition: right .20s ease-in;
   cursor: text;
+}
+
+.form-login span {
+  max-width: max-content;
+  margin: 0 auto;
+  color: #E0E0E0;
+}
+
+.form-login span a {
+  text-decoration: none;
+  color: #E9B425;
 }
 
 .form-login button {

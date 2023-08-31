@@ -72,6 +72,17 @@
   justify-content: space-between;
 }
 
+.form span {
+  max-width: max-content;
+  margin: 0 auto;
+  color: #E0E0E0;
+}
+
+.form span a {
+  text-decoration: none;
+  color: #E9B425;
+}
+
 .form button {
   width: 471px;
   height: 67px;
