@@ -5,7 +5,7 @@
 <div align="center">
   <img heigth="200em" src="./src/assets/Login.jpeg"/>
   
-  <a href="https://weekly-planner-a8b5-m9ukvkd3e-william-klein7.vercel.app">Para acessar o site, clique aqui</a>
+  <a href="https://weekly-planner-a8b5.vercel.app">Para acessar o site, clique aqui</a>
   <h6>
     Obs: O Planner foi desenvolvido para a resolução 1920x1080
   </h6>
