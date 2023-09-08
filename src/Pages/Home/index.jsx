@@ -6,12 +6,10 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../FirebaseConection";
 import { useState } from "react";
 import { toastError, toastWarn } from "../../Hook/toast";
-import Modal from "../../components/Modal";
 
 const Home = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [modal, setModal] = useState(false);
 	const [passwordError, setPasswordError] = useState("");
 	const navigate = useNavigate();
 
@@ -21,8 +19,6 @@ const Home = () => {
 			setEmail("");
 			setPasswordError("");
 			toastWarn("Fill in all fields");
-
-			setModal(true);
 		} else {
 			await signInWithEmailAndPassword(auth, email, password)
 				.then(() => {
@@ -37,8 +33,6 @@ const Home = () => {
 					} else if (error.code === "auth/user-not-found") {
 						setPasswordError("");
 						toastError("User not found");
-
-						setModal(true);
 					}
 				});
 		}
@@ -46,7 +40,6 @@ const Home = () => {
 
 	return (
 		<section className="login">
-			<Modal isOpen={modal} setCloseModal={() => setModal(!modal)} />
 			<div className="container-login">
 				<div className="box-login">
 					<div className="box-title-login">

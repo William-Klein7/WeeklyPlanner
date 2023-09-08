@@ -93,14 +93,14 @@ export default function ModalLight({ isOpen, setCloseModal }) {
 			<div style={background_modal}>
 				<div style={modal_container}>
 					<div>
-						<h1 style={h1}>Você deseja deletar todas as tasks?</h1>
+						<h1 style={h1}>Do you want to delete all tasks?</h1>
 					</div>
 					<div style={box_btns}>
 						<button style={button_yes} onClick={() => deleteTodasTask()}>
-							Sim
+							Yes
 						</button>
 						<button style={button_register} onClick={setCloseModal}>
-							Não
+							No
 						</button>
 					</div>
 					<button style={btn_close} onClick={setCloseModal}>
