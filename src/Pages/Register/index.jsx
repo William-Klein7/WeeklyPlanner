@@ -117,9 +117,7 @@ const Register = () => {
 			email: email,
 		})
 			.then(() => {
-				setTimeout(() => {
-					navigate("/");
-				}, 3000);
+				navigate("/");
 			})
 			.catch(() => {
 				toastError("An error occurred while registering the user");

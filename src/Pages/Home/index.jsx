@@ -21,9 +21,8 @@ const Home = () => {
 			setEmail("");
 			setPasswordError("");
 			toastWarn("Fill in all fields");
-			setTimeout(() => {
-				setModal(true);
-			}, 3000);
+
+			setModal(true);
 		} else {
 			await signInWithEmailAndPassword(auth, email, password)
 				.then(() => {
@@ -38,9 +37,8 @@ const Home = () => {
 					} else if (error.code === "auth/user-not-found") {
 						setPasswordError("");
 						toastError("User not found");
-						setTimeout(() => {
-							setModal(true);
-						}, 3000);
+
+						setModal(true);
 					}
 				});
 		}
