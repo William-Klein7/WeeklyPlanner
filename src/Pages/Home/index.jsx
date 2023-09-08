@@ -62,7 +62,10 @@ const Home = () => {
 								type="email"
 								placeholder="Email"
 								value={email}
-								onChange={(e) => setEmail(e.target.value)}
+								onChange={(e) => {
+									setEmail(e.target.value);
+									passwordError && setPasswordError("");
+								}}
 								id="userId"
 								className={
 									passwordError != ""
@@ -79,7 +82,10 @@ const Home = () => {
 								type="password"
 								placeholder="Password"
 								value={password}
-								onChange={(e) => setPassword(e.target.value)}
+								onChange={(e) => {
+									setPassword(e.target.value);
+									passwordError && setPasswordError("");
+								}}
 								id="passwordId"
 								className={
 									passwordError != ""
