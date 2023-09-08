@@ -14,9 +14,11 @@ const Register = () => {
 	const [birthDate, setBirthDate] = useState("");
 	const [country, setCountry] = useState("");
 	const [city, setCity] = useState("");
+	const [CEP, setCEP] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [apiError, setApiError] = useState(null);
 	const navigate = useNavigate();
 
 	function validatePassword(senha) {
@@ -66,8 +68,8 @@ const Register = () => {
 			firstName === "" ||
 			lastName === "" ||
 			birthDate === "" ||
+			CEP === "" ||
 			country === "" ||
-			city === "" ||
 			email === "" ||
 			password === "" ||
 			confirmPassword === ""
@@ -75,6 +77,8 @@ const Register = () => {
 			toastWarn("Please fill in all fields!");
 		} else if (!verificarMaiorIdade(birthDate)) {
 			toastError("Sorry, but you must be at least 18 years old.");
+		} else if (apiError) {
+			toastError("Enter a valid CEP");
 		} else if (!validateEmail(email)) {
 			toastWarn("Enter a valid email address.");
 		} else if (!validatePassword(password)) {
@@ -124,6 +128,26 @@ const Register = () => {
 			});
 	}
 
+	const checkCEP = (e) => {
+		const cep = e.target.value.replace(/\D/g, "");
+		fetch(`https://viacep.com.br/ws/${cep}/json/`)
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error("Failed to fetch address information");
+				}
+				return res.json();
+			})
+			.then((data) => {
+				console.log(data);
+				setCity(data.localidade || "");
+				setApiError(null); // Limpar erro se a requisição for bem-sucedida
+			})
+			.catch(() => {
+				setApiError("Invalid CEP or failed to fetch data"); // Configurar erro de requisição
+				toastError("Invalid CEP or failed to fetch data");
+			});
+	};
+
 	return (
 		<section className="login">
 			<div className="container">
@@ -169,29 +193,32 @@ const Register = () => {
 							/>
 						</div>
 						<div className="box-input">
-							<label htmlFor="countryId">Country</label>
+							<label htmlFor="CountryId">Country</label>
 							<input
 								value={country}
 								onChange={(e) => {
 									setCountry(e.target.value);
 								}}
 								type="text"
-								placeholder="Your Country"
-								id="countryId"
+								placeholder="Your country"
+								id="CountryId"
 							/>
 						</div>
+
 						<div className="box-input">
-							<label htmlFor="cityId">City</label>
+							<label htmlFor="CEPId">CEP</label>
 							<input
-								value={city}
+								value={CEP}
 								onChange={(e) => {
-									setCity(e.target.value);
+									setCEP(e.target.value);
 								}}
 								type="text"
-								placeholder="Your City"
-								id="cityId"
+								onBlur={checkCEP}
+								placeholder="Your CEP"
+								id="CEPId"
 							/>
 						</div>
+
 						<div className="box-input">
 							<label htmlFor="emailId">E-mail</label>
 							<input
